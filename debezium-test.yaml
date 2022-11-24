@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debezium-test-k8s-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: debezium-test-k8s-deployment
+  template:
+    metadata:
+      labels:
+        app: debezium-test-k8s-deployment
+    spec:
+      containers:
+        - name: debezium-test-k8s-deployment
+          image: jed.ocir.io/axvwbdbnaem8/debezium-test-repo/debezium-test
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: ocisecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: debezium-test-k8s-deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: debezium-test-k8s-deployment
