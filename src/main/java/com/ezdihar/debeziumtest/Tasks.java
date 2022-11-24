@@ -7,8 +7,7 @@ import java.math.BigInteger;
 public class Tasks {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="my_entity_seq_gen")
-    @SequenceGenerator(name="my_entity_seq_gen", sequenceName="MY_ENTITY_SEQ")
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     private String text;
