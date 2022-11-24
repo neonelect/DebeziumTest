@@ -18,6 +18,6 @@ public class OSSKafkaListener {
 
     @KafkaListener(topics = "testcorebs_v2.corebs.events", containerFactory = "kafkaListenerContainerFactory")
     public void receiveMessage(String message) {
-        log.info("ANSWER FORM MAMBU: " + mambuClient.exampleGetMethod().block());
+        log.info("ANSWER FORM MAMBU: " + mambuClient.exampleGetMethod());
     }
 }
